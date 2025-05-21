@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Live Stream Switcher</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    #player {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="player"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+  </iframe>
+
+
+  <script>
+    const streams = [
+      "70gObI9oeVU",  // WaveWatchers
+      "TffYvlIgKH4",  // Reef Cam
+      "9MAq1Cc8qPg",   // Kalk Bay
+      "W9pSC3mY"    //  Clifton
+    ];
+
+
+    const player = document.getElementById("player");
+
+
+    function loadRandomStream() {
+      const randomIndex = Math.floor(Math.random() * streams.length);
+      const streamId = streams[randomIndex];
+      const url = `https://www.youtube.com/embed/${streamId}?autoplay=1&mute=1&enablejsapi=1`;
+      player.src = url;
+    }
+
+
+    // Load first stream immediately
+    loadRandomStream();
+
+
+    // Switch to a new random stream every 60 seconds
+    setInterval(loadRandomStream, 60000);
+  </script>
+</body>
+</html>
